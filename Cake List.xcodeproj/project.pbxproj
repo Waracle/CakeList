@@ -7,13 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		546B74A91EBB809600DA704C /* CakeDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 546B74A81EBB809600DA704C /* CakeDataSource.m */; };
+		546B74AD1EBB8B1E00DA704C /* Cake.m in Sources */ = {isa = PBXBuildFile; fileRef = 546B74AC1EBB8B1E00DA704C /* Cake.m */; };
+		546B74B21EBBA65000DA704C /* NSURLSession+IgnoreErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 546B74B11EBBA65000DA704C /* NSURLSession+IgnoreErrors.m */; };
+		546B74B51EBBADB600DA704C /* acf_dispatch_main.c in Sources */ = {isa = PBXBuildFile; fileRef = 546B74B31EBBADB600DA704C /* acf_dispatch_main.c */; };
+		546B74B71EBBAFD000DA704C /* CakeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 546B74B61EBBAFD000DA704C /* CakeTests.m */; };
 		DBF17A171B0B648F004E6311 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DBF17A161B0B648F004E6311 /* main.m */; };
 		DBF17A1A1B0B648F004E6311 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DBF17A191B0B648F004E6311 /* AppDelegate.m */; };
 		DBF17A1D1B0B648F004E6311 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBF17A1C1B0B648F004E6311 /* MasterViewController.m */; };
 		DBF17A231B0B648F004E6311 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBF17A211B0B648F004E6311 /* Main.storyboard */; };
 		DBF17A251B0B648F004E6311 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBF17A241B0B648F004E6311 /* Images.xcassets */; };
 		DBF17A281B0B648F004E6311 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBF17A261B0B648F004E6311 /* LaunchScreen.xib */; };
-		DBF17A341B0B648F004E6311 /* Cake_ListTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DBF17A331B0B648F004E6311 /* Cake_ListTests.m */; };
 		DBF17A3F1B0B8E16004E6311 /* CakeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DBF17A3E1B0B8E16004E6311 /* CakeCell.m */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +32,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		546B74A71EBB809600DA704C /* CakeDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CakeDataSource.h; sourceTree = "<group>"; };
+		546B74A81EBB809600DA704C /* CakeDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CakeDataSource.m; sourceTree = "<group>"; };
+		546B74AA1EBB88D600DA704C /* CakeableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CakeableCell.h; sourceTree = "<group>"; };
+		546B74AB1EBB8B1E00DA704C /* Cake.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cake.h; sourceTree = "<group>"; };
+		546B74AC1EBB8B1E00DA704C /* Cake.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cake.m; sourceTree = "<group>"; };
+		546B74B01EBBA65000DA704C /* NSURLSession+IgnoreErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLSession+IgnoreErrors.h"; sourceTree = "<group>"; };
+		546B74B11EBBA65000DA704C /* NSURLSession+IgnoreErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLSession+IgnoreErrors.m"; sourceTree = "<group>"; };
+		546B74B31EBBADB600DA704C /* acf_dispatch_main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = acf_dispatch_main.c; sourceTree = "<group>"; };
+		546B74B41EBBADB600DA704C /* acf_dispatch_main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = acf_dispatch_main.h; sourceTree = "<group>"; };
+		546B74B61EBBAFD000DA704C /* CakeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CakeTests.m; sourceTree = "<group>"; };
 		DBF17A111B0B648F004E6311 /* Cake List.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cake List.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBF17A151B0B648F004E6311 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DBF17A161B0B648F004E6311 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -40,7 +54,6 @@
 		DBF17A271B0B648F004E6311 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		DBF17A2D1B0B648F004E6311 /* Cake ListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Cake ListTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBF17A321B0B648F004E6311 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DBF17A331B0B648F004E6311 /* Cake_ListTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Cake_ListTests.m; sourceTree = "<group>"; };
 		DBF17A3D1B0B8E16004E6311 /* CakeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CakeCell.h; sourceTree = "<group>"; };
 		DBF17A3E1B0B8E16004E6311 /* CakeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CakeCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -63,6 +76,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		546B74AE1EBBA41E00DA704C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				546B74AB1EBB8B1E00DA704C /* Cake.h */,
+				546B74AC1EBB8B1E00DA704C /* Cake.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		546B74AF1EBBA62500DA704C /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				546B74B01EBBA65000DA704C /* NSURLSession+IgnoreErrors.h */,
+				546B74B11EBBA65000DA704C /* NSURLSession+IgnoreErrors.m */,
+				546B74B31EBBADB600DA704C /* acf_dispatch_main.c */,
+				546B74B41EBBADB600DA704C /* acf_dispatch_main.h */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
 		DBF17A081B0B648F004E6311 = {
 			isa = PBXGroup;
 			children = (
@@ -84,8 +117,10 @@
 		DBF17A131B0B648F004E6311 /* Cake List */ = {
 			isa = PBXGroup;
 			children = (
+				546B74AF1EBBA62500DA704C /* Categories */,
 				DBF17A181B0B648F004E6311 /* AppDelegate.h */,
 				DBF17A191B0B648F004E6311 /* AppDelegate.m */,
+				546B74AE1EBBA41E00DA704C /* Model */,
 				DBF17A401B0B8EE3004E6311 /* View Controllers */,
 				DBF17A411B0B8EED004E6311 /* Cells */,
 				DBF17A211B0B648F004E6311 /* Main.storyboard */,
@@ -108,8 +143,8 @@
 		DBF17A301B0B648F004E6311 /* Cake ListTests */ = {
 			isa = PBXGroup;
 			children = (
-				DBF17A331B0B648F004E6311 /* Cake_ListTests.m */,
 				DBF17A311B0B648F004E6311 /* Supporting Files */,
+				546B74B61EBBAFD000DA704C /* CakeTests.m */,
 			);
 			path = "Cake ListTests";
 			sourceTree = "<group>";
@@ -127,6 +162,8 @@
 			children = (
 				DBF17A1B1B0B648F004E6311 /* MasterViewController.h */,
 				DBF17A1C1B0B648F004E6311 /* MasterViewController.m */,
+				546B74A71EBB809600DA704C /* CakeDataSource.h */,
+				546B74A81EBB809600DA704C /* CakeDataSource.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -136,6 +173,7 @@
 			children = (
 				DBF17A3D1B0B8E16004E6311 /* CakeCell.h */,
 				DBF17A3E1B0B8E16004E6311 /* CakeCell.m */,
+				546B74AA1EBB88D600DA704C /* CakeableCell.h */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -240,8 +278,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				546B74A91EBB809600DA704C /* CakeDataSource.m in Sources */,
+				546B74B51EBBADB600DA704C /* acf_dispatch_main.c in Sources */,
 				DBF17A1A1B0B648F004E6311 /* AppDelegate.m in Sources */,
+				546B74B21EBBA65000DA704C /* NSURLSession+IgnoreErrors.m in Sources */,
 				DBF17A3F1B0B8E16004E6311 /* CakeCell.m in Sources */,
+				546B74AD1EBB8B1E00DA704C /* Cake.m in Sources */,
 				DBF17A1D1B0B648F004E6311 /* MasterViewController.m in Sources */,
 				DBF17A171B0B648F004E6311 /* main.m in Sources */,
 			);
@@ -251,7 +293,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBF17A341B0B648F004E6311 /* Cake_ListTests.m in Sources */,
+				546B74B71EBBAFD000DA704C /* CakeTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,10 +440,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -418,10 +457,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "Cake ListTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.waracle.$(PRODUCT_NAME:rfc1034identifier)";
