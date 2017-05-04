@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CakeableCell.h"
 
-@interface CakeCell : UITableViewCell
+@interface CakeCell : UITableViewCell<CakeableCell>
 @property (weak, nonatomic) IBOutlet UIImageView *cakeImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
