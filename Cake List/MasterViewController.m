@@ -17,6 +17,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.estimatedRowHeight = 60;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+
     [self getData];
 }
 
@@ -35,7 +38,7 @@
     NSDictionary *object = self.objects[indexPath.row];
     cell.titleLabel.text = object[@"title"];
     cell.descriptionLabel.text = object[@"desc"];
- 
+    
     
     NSURL *aURL = [NSURL URLWithString:object[@"image"]];
     NSData *data = [NSData dataWithContentsOfURL:aURL];
