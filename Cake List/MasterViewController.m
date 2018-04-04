@@ -10,17 +10,23 @@
 #import "CakeCell.h"
 
 @interface MasterViewController ()
+
 @property (strong, nonatomic) NSArray *objects;
+
 @end
 
 @implementation MasterViewController
 
+#pragma mark - Lifecycle
+
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     [self getData];
 }
 
-#pragma mark - Table View
+#pragma mark - UITableViewDataSource
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
@@ -30,6 +36,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     CakeCell *cell = (CakeCell*)[tableView dequeueReusableCellWithIdentifier:@"CakeCell"];
     
     NSDictionary *object = self.objects[indexPath.row];
@@ -45,9 +52,13 @@
     return cell;
 }
 
+#pragma mark - UITableViewDelegate
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+
+#pragma mark - Fetch
 
 - (void)getData{
     

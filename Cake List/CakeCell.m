@@ -10,5 +10,14 @@
 
 @implementation CakeCell
 
+#pragma mark - Lifecycle
+
+- (void)prepareForReuse {
+    
+    [super prepareForReuse];
+    self.cakeImageView.image = nil;
+    self.titleLabel.text = nil;
+    self.descriptionLabel.text = nil;
+}
 
 @end
