@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		6DB69AA120759CEF00EEA7B7 /* Cake.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB69AA020759CEF00EEA7B7 /* Cake.m */; };
+		6DB69AA52075A13300EEA7B7 /* NetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB69AA42075A13300EEA7B7 /* NetworkService.m */; };
+		6DB69AAE2075A49C00EEA7B7 /* NSError+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB69AAD2075A49C00EEA7B7 /* NSError+Extension.m */; };
 		DBF17A171B0B648F004E6311 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DBF17A161B0B648F004E6311 /* main.m */; };
 		DBF17A1A1B0B648F004E6311 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DBF17A191B0B648F004E6311 /* AppDelegate.m */; };
 		DBF17A1D1B0B648F004E6311 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBF17A1C1B0B648F004E6311 /* MasterViewController.m */; };
@@ -31,6 +33,10 @@
 /* Begin PBXFileReference section */
 		6DB69A9F20759CEF00EEA7B7 /* Cake.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cake.h; sourceTree = "<group>"; };
 		6DB69AA020759CEF00EEA7B7 /* Cake.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Cake.m; sourceTree = "<group>"; };
+		6DB69AA32075A13300EEA7B7 /* NetworkService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkService.h; sourceTree = "<group>"; };
+		6DB69AA42075A13300EEA7B7 /* NetworkService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkService.m; sourceTree = "<group>"; };
+		6DB69AAC2075A49C00EEA7B7 /* NSError+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSError+Extension.h"; sourceTree = "<group>"; };
+		6DB69AAD2075A49C00EEA7B7 /* NSError+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSError+Extension.m"; sourceTree = "<group>"; };
 		DBF17A111B0B648F004E6311 /* Cake List.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cake List.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBF17A151B0B648F004E6311 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DBF17A161B0B648F004E6311 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -94,6 +100,24 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		6DB69AA22075A10500EEA7B7 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				6DB69AA32075A13300EEA7B7 /* NetworkService.h */,
+				6DB69AA42075A13300EEA7B7 /* NetworkService.m */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		6DB69AAB2075A48800EEA7B7 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				6DB69AAC2075A49C00EEA7B7 /* NSError+Extension.h */,
+				6DB69AAD2075A49C00EEA7B7 /* NSError+Extension.m */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		DBF17A081B0B648F004E6311 = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +143,8 @@
 				DBF17A401B0B8EE3004E6311 /* View Controllers */,
 				DBF17A411B0B8EED004E6311 /* Cells */,
 				6DB69A9E20759CCC00EEA7B7 /* Models */,
+				6DB69AA22075A10500EEA7B7 /* Services */,
+				6DB69AAB2075A48800EEA7B7 /* Extensions */,
 				6DB69A9D20759CB000EEA7B7 /* Resources */,
 				DBF17A141B0B648F004E6311 /* Supporting Files */,
 			);
@@ -269,10 +295,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6DB69AAE2075A49C00EEA7B7 /* NSError+Extension.m in Sources */,
 				6DB69AA120759CEF00EEA7B7 /* Cake.m in Sources */,
 				DBF17A1A1B0B648F004E6311 /* AppDelegate.m in Sources */,
 				DBF17A3F1B0B8E16004E6311 /* CakeCell.m in Sources */,
 				DBF17A1D1B0B648F004E6311 /* MasterViewController.m in Sources */,
+				6DB69AA52075A13300EEA7B7 /* NetworkService.m in Sources */,
 				DBF17A171B0B648F004E6311 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

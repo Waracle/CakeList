@@ -9,10 +9,12 @@
 #import "MasterViewController.h"
 #import "CakeCell.h"
 #import "Cake.h"
+#import "NetworkService.h"
 
 @interface MasterViewController ()
 
 @property (strong, nonatomic) NSArray <Cake *>*objects;
+@property (strong, nonatomic) NetworkService *networkService;
 
 @end
 
@@ -47,7 +49,8 @@
 
 #pragma mark - UITableViewDelegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -55,38 +58,19 @@
 
 - (void)getData{
     
-    NSURL *url = [NSURL URLWithString:@"https://gist.githubusercontent.com/hart88/198f29ec5114a3ec3460/raw/8dd19a88f9b8d24c23d9960f3300d0c917a4f07c/cake.json"];
+    self.networkService = [NetworkService new];
+    __weak typeof(self) weakSelf = self;
     
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    
-    NSError *jsonError;
-    id responseData = [NSJSONSerialization
-                       JSONObjectWithData:data
-                       options:kNilOptions
-                       error:&jsonError];
-   
-    if (jsonError) {
+    [self.networkService fetchAllCakesWithCompletion:^(NSArray<Cake *> *cakes, NSError *fetchError) {
         
-        // display error
-
-    } else if ([responseData isKindOfClass:[NSArray class]]) {
-        
-        NSArray *cakesArray = (NSArray *)responseData;
-        NSMutableArray *allCakes = [NSMutableArray new];
-        
-        for (NSDictionary *cakeDictionary in cakesArray) {
+        if (fetchError) {
             
-            Cake *cake = [[Cake alloc] initWithDictionary:cakeDictionary];
-            [allCakes addObject:cake];
+        } else {
+            
+            weakSelf.objects = cakes;
+            [weakSelf.tableView reloadData];
         }
-        
-        self.objects = allCakes.copy;
-        [self.tableView reloadData];
-            
-    } else {
-     
-        
-    }
+    }];
 }
 
 @end
