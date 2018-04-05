@@ -23,6 +23,8 @@ typedef void(^FetchRequestCompletion)(id object, NSError *fetchError);
 
 #pragma mark - Instantiation
 
+// TODO: Remove singleton as it's not testable
+
 + (NetworkService *)sharedService {
     
     static NetworkService *sharedInstance = nil;

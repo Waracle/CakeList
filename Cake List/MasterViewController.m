@@ -65,7 +65,7 @@
         
         if (fetchError) {
             
-            // TODO: handle error
+            [weakSelf presentAlertControllerWithError:fetchError];
             
         } else {
             
@@ -73,6 +73,27 @@
             [weakSelf.tableView reloadData];
         }
     }];
+}
+
+#pragma mark - Error handling
+
+- (void)presentAlertControllerWithError:(NSError *)error {
+    
+    __weak typeof(self) weakSelf = self;
+    
+    UIAlertAction *retryAction = [UIAlertAction actionWithTitle:@"Retry" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        [weakSelf getData];
+    }];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:retryAction];
+    [alertController addAction:cancelAction];
+    
+    [self presentViewController:alertController animated:true completion:nil];
+    
 }
 
 @end
