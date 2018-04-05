@@ -8,10 +8,11 @@
 
 #import "MasterViewController.h"
 #import "CakeCell.h"
+#import "Cake.h"
 
 @interface MasterViewController ()
 
-@property (strong, nonatomic) NSArray *objects;
+@property (strong, nonatomic) NSArray <Cake *>*objects;
 
 @end
 
@@ -38,16 +39,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     CakeCell *cell = (CakeCell*)[tableView dequeueReusableCellWithIdentifier:@"CakeCell"];
-    
-    NSDictionary *object = self.objects[indexPath.row];
-    cell.titleLabel.text = object[@"title"];
-    cell.descriptionLabel.text = object[@"desc"];
- 
-    
-    NSURL *aURL = [NSURL URLWithString:object[@"image"]];
-    NSData *data = [NSData dataWithContentsOfURL:aURL];
-    UIImage *image = [UIImage imageWithData:data];
-    [cell.cakeImageView setImage:image];
+    Cake *cake = self.objects[indexPath.row];
+    [cell configureWithCake:cake];
     
     return cell;
 }
@@ -71,12 +64,29 @@
                        JSONObjectWithData:data
                        options:kNilOptions
                        error:&jsonError];
-    if (!jsonError){
-        self.objects = responseData;
+   
+    if (jsonError) {
+        
+        // display error
+
+    } else if ([responseData isKindOfClass:[NSArray class]]) {
+        
+        NSArray *cakesArray = (NSArray *)responseData;
+        NSMutableArray *allCakes = [NSMutableArray new];
+        
+        for (NSDictionary *cakeDictionary in cakesArray) {
+            
+            Cake *cake = [[Cake alloc] initWithDictionary:cakeDictionary];
+            [allCakes addObject:cake];
+        }
+        
+        self.objects = allCakes.copy;
         [self.tableView reloadData];
+            
     } else {
+     
+        
     }
-    
 }
 
 @end
