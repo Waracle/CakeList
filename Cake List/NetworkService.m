@@ -9,17 +9,53 @@
 #import "NetworkService.h"
 #import "NSError+Extension.h"
 #import "Cake.h"
+#import <UIKit/UIKit.h>
+
+typedef void(^FetchRequestCompletion)(id object, NSError *fetchError);
+
+@interface NetworkService ()
+
+@property (strong, nonatomic) NSURLSession *session;
+
+@end
 
 @implementation NetworkService
+
+#pragma mark - Instantiation
+
++ (NetworkService *)sharedService {
+    
+    static NetworkService *sharedInstance = nil;
+    static dispatch_once_t onceToken; // onceToken = 0
+    
+    dispatch_once(&onceToken, ^{
+        
+        sharedInstance = [NetworkService new];
+        sharedInstance.session = [NSURLSession sharedSession];
+    });
+    
+    return sharedInstance;
+}
+
+#pragma mark - Requests
 
 - (void)fetchAllCakesWithCompletion:(FetchCakesCompletion)completion {
     
     NSURL *url = [NSURL URLWithString:@"https://gist.githubusercontent.com/hart88/198f29ec5114a3ec3460/raw/8dd19a88f9b8d24c23d9960f3300d0c917a4f07c/cake.json"];
+    [self fetchDataWithURL:url isImageURL:false completion:completion];
+}
+
+- (void)fetchImageForURLCake:(Cake *)cake completoin:(FetchCakeImageCompletion)completion {
     
-    NSURLSession *session = [NSURLSession sharedSession];
+    NSURL *url = [NSURL URLWithString:cake.imageURLString];
+    [self fetchDataWithURL:url isImageURL:true completion:completion];
+}
+
+- (void)fetchDataWithURL:(NSURL *)url isImageURL:(BOOL)isImageURL completion:(FetchRequestCompletion)completion {
+    
     __weak typeof(self) weakSelf = self;
     
-    [[session dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    [[self.session dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         
         if (error) {
             
@@ -27,16 +63,18 @@
             
         } else if (data && response) {
             
-            return [weakSelf cakesRequestCompletedWithResponse:response data:data completion:completion];
+            return [weakSelf cakesRequestCompletedWithResponse:response data:data isImageURL:isImageURL completion:completion];
         }
         
         NSError *unkownError = [NSError errorWithMessage:@"An unkown error occured. Please try again later."];
         [weakSelf requestCompletedWithCakes:nil error:unkownError completion:completion];
         
-    }] resume] ;
+    }] resume];
 }
 
-- (void)cakesRequestCompletedWithResponse:(NSURLResponse *)response data:(NSData *)data completion:(FetchCakesCompletion)completion {
+#pragma mark - Parsing
+
+- (void)cakesRequestCompletedWithResponse:(NSURLResponse *)response data:(NSData *)data isImageURL:(BOOL)isImageURL completion:(FetchCakesCompletion)completion {
     
     NSHTTPURLResponse *httpURLResponse = (NSHTTPURLResponse *)response;
     BOOL isSuccessfulRequest = httpURLResponse.statusCode >= 200 && httpURLResponse.statusCode < 400;
@@ -47,36 +85,52 @@
         return [self requestCompletedWithCakes:nil error:requestFailedError completion:completion];
     }
     
-    NSError *jsonError;
-    id responseData = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&jsonError];
+    id object = nil;
     
-    if (jsonError) {
+    if (isImageURL) {
         
-        return [self requestCompletedWithCakes:nil error:jsonError completion:completion];
-    
-    } else if ([responseData isKindOfClass:[NSArray class]]) {
+        object = [self imageForData:data];
         
-        NSArray *cakesArray = (NSArray *)responseData;
-        NSMutableArray *allCakes = [NSMutableArray new];
+    } else {
         
-        for (NSDictionary *cakeDictionary in cakesArray) {
+        NSError *jsonError;
+        id responseData = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&jsonError];
+        
+        if (jsonError) {
             
-            Cake *cake = [[Cake alloc] initWithDictionary:cakeDictionary];
-            [allCakes addObject:cake];
+            return [self requestCompletedWithCakes:nil error:jsonError completion:completion];
         }
         
-        return [self requestCompletedWithCakes:allCakes error:nil completion:completion];
+        object = [self cakesForData:responseData];
     }
 
-    NSError *unkownResponseDataError = [NSError errorWithMessage:@"The server returned unexpected data. Please try again later."];
-    [self requestCompletedWithCakes:nil error:unkownResponseDataError completion:completion];
+    [self requestCompletedWithCakes:object error:nil completion:completion];
 }
 
-- (void)requestCompletedWithCakes:(NSArray <Cake *>*)cakes error:(NSError *)error completion:(FetchCakesCompletion)completion {
+- (NSArray <Cake *>*)cakesForData:(NSData *)responseData {
+    
+    NSArray *cakesArray = (NSArray *)responseData;
+    NSMutableArray *allCakes = [NSMutableArray new];
+    
+    for (NSDictionary *cakeDictionary in cakesArray) {
+        
+        Cake *cake = [[Cake alloc] initWithDictionary:cakeDictionary];
+        [allCakes addObject:cake];
+    }
+    
+    return allCakes;
+}
+
+- (UIImage *)imageForData:(NSData *)responseData {
+    
+    return [[UIImage alloc] initWithData:responseData];
+}
+
+- (void)requestCompletedWithCakes:(id)object error:(NSError *)error completion:(FetchRequestCompletion)completion {
     
     dispatch_async(dispatch_get_main_queue(), ^{
         
-        completion(cakes, error);
+        completion(object, error);
     });
 }
 

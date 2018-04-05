@@ -58,12 +58,14 @@
 
 - (void)getData{
     
-    self.networkService = [NetworkService new];
+    self.networkService = [NetworkService sharedService];
     __weak typeof(self) weakSelf = self;
     
     [self.networkService fetchAllCakesWithCompletion:^(NSArray<Cake *> *cakes, NSError *fetchError) {
         
         if (fetchError) {
+            
+            // TODO: handle error
             
         } else {
             

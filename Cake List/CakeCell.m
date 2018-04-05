@@ -8,12 +8,15 @@
 
 #import "CakeCell.h"
 #import "Cake.h"
+#import "NetworkService.h"
 
 @interface CakeCell ()
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *cakeImageView;
+
+@property (strong, nonatomic) IBOutlet NetworkService *networkService;
 
 @end
 
@@ -36,10 +39,20 @@
     self.titleLabel.text = cake.title;
     self.descriptionLabel.text = cake.detail;
     
-    NSURL *url = [NSURL URLWithString:cake.imageURLString];
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    UIImage *image = [UIImage imageWithData:data];
-    [self.cakeImageView setImage:image];
+    [self fetchCakeImageForCake:cake];
+}
+
+#pragma mark - Image fetch
+
+- (void)fetchCakeImageForCake:(Cake *)cake {
+    
+    self.networkService = [NetworkService sharedService];
+    __weak typeof(self) weakSelf = self;
+    
+    [self.networkService fetchImageForURLCake:cake completoin:^(UIImage *cakeImage, NSError *fetchError) {
+    
+        [weakSelf.cakeImageView setImage:cakeImage];
+    }];
 }
 
 @end
