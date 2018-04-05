@@ -8,8 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		6DB69AA120759CEF00EEA7B7 /* Cake.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB69AA020759CEF00EEA7B7 /* Cake.m */; };
-		6DB69AA52075A13300EEA7B7 /* NetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB69AA42075A13300EEA7B7 /* NetworkService.m */; };
 		6DB69AAE2075A49C00EEA7B7 /* NSError+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB69AAD2075A49C00EEA7B7 /* NSError+Extension.m */; };
+		6DB6E6BE2076D87E00629590 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB6E6BD2076D87E00629590 /* NetworkService.swift */; };
+		6DB6E6C02076D8FF00629590 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB6E6BF2076D8FF00629590 /* Constants.swift */; };
+		6DB6E6C22076D92700629590 /* URLResponse+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB6E6C12076D92700629590 /* URLResponse+Extension.swift */; };
+		6DB6E6C42076D94100629590 /* NetworkServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB6E6C32076D94100629590 /* NetworkServiceError.swift */; };
 		DBF17A171B0B648F004E6311 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DBF17A161B0B648F004E6311 /* main.m */; };
 		DBF17A1A1B0B648F004E6311 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DBF17A191B0B648F004E6311 /* AppDelegate.m */; };
 		DBF17A1D1B0B648F004E6311 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBF17A1C1B0B648F004E6311 /* MasterViewController.m */; };
@@ -33,10 +36,13 @@
 /* Begin PBXFileReference section */
 		6DB69A9F20759CEF00EEA7B7 /* Cake.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cake.h; sourceTree = "<group>"; };
 		6DB69AA020759CEF00EEA7B7 /* Cake.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Cake.m; sourceTree = "<group>"; };
-		6DB69AA32075A13300EEA7B7 /* NetworkService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkService.h; sourceTree = "<group>"; };
-		6DB69AA42075A13300EEA7B7 /* NetworkService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkService.m; sourceTree = "<group>"; };
 		6DB69AAC2075A49C00EEA7B7 /* NSError+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSError+Extension.h"; sourceTree = "<group>"; };
 		6DB69AAD2075A49C00EEA7B7 /* NSError+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSError+Extension.m"; sourceTree = "<group>"; };
+		6DB6E6BC2076D87E00629590 /* Cake List-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cake List-Bridging-Header.h"; sourceTree = "<group>"; };
+		6DB6E6BD2076D87E00629590 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		6DB6E6BF2076D8FF00629590 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		6DB6E6C12076D92700629590 /* URLResponse+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLResponse+Extension.swift"; sourceTree = "<group>"; };
+		6DB6E6C32076D94100629590 /* NetworkServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceError.swift; sourceTree = "<group>"; };
 		DBF17A111B0B648F004E6311 /* Cake List.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cake List.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBF17A151B0B648F004E6311 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DBF17A161B0B648F004E6311 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -87,6 +93,7 @@
 				DBF17A261B0B648F004E6311 /* LaunchScreen.xib */,
 				DBF17A211B0B648F004E6311 /* Main.storyboard */,
 				DBF17A241B0B648F004E6311 /* Images.xcassets */,
+				6DB6E6BF2076D8FF00629590 /* Constants.swift */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -103,8 +110,8 @@
 		6DB69AA22075A10500EEA7B7 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				6DB69AA32075A13300EEA7B7 /* NetworkService.h */,
-				6DB69AA42075A13300EEA7B7 /* NetworkService.m */,
+				6DB6E6BD2076D87E00629590 /* NetworkService.swift */,
+				6DB6E6C32076D94100629590 /* NetworkServiceError.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -114,6 +121,7 @@
 			children = (
 				6DB69AAC2075A49C00EEA7B7 /* NSError+Extension.h */,
 				6DB69AAD2075A49C00EEA7B7 /* NSError+Extension.m */,
+				6DB6E6C12076D92700629590 /* URLResponse+Extension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -154,6 +162,7 @@
 		DBF17A141B0B648F004E6311 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6DB6E6BC2076D87E00629590 /* Cake List-Bridging-Header.h */,
 				DBF17A151B0B648F004E6311 /* Info.plist */,
 				DBF17A161B0B648F004E6311 /* main.m */,
 			);
@@ -244,6 +253,7 @@
 				TargetAttributes = {
 					DBF17A101B0B648F004E6311 = {
 						CreatedOnToolsVersion = 6.3;
+						LastSwiftMigration = 0920;
 					};
 					DBF17A2C1B0B648F004E6311 = {
 						CreatedOnToolsVersion = 6.3;
@@ -297,11 +307,14 @@
 			files = (
 				6DB69AAE2075A49C00EEA7B7 /* NSError+Extension.m in Sources */,
 				6DB69AA120759CEF00EEA7B7 /* Cake.m in Sources */,
+				6DB6E6BE2076D87E00629590 /* NetworkService.swift in Sources */,
 				DBF17A1A1B0B648F004E6311 /* AppDelegate.m in Sources */,
 				DBF17A3F1B0B8E16004E6311 /* CakeCell.m in Sources */,
+				6DB6E6C42076D94100629590 /* NetworkServiceError.swift in Sources */,
 				DBF17A1D1B0B648F004E6311 /* MasterViewController.m in Sources */,
-				6DB69AA52075A13300EEA7B7 /* NetworkService.m in Sources */,
 				DBF17A171B0B648F004E6311 /* main.m in Sources */,
+				6DB6E6C22076D92700629590 /* URLResponse+Extension.swift in Sources */,
+				6DB6E6C02076D8FF00629590 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,9 +440,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "Cake List/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Cake List/Cake List-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -437,15 +454,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "Cake List/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Cake List/Cake List-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
 		DBF17A3B1B0B648F004E6311 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -465,6 +486,7 @@
 		DBF17A3C1B0B648F004E6311 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",

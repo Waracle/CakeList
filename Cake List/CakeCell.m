@@ -8,7 +8,7 @@
 
 #import "CakeCell.h"
 #import "Cake.h"
-#import "NetworkService.h"
+#import "Cake_List-Swift.h"
 
 @interface CakeCell ()
 
@@ -16,7 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *cakeImageView;
 
-@property (strong, nonatomic) IBOutlet NetworkService *networkService;
+@property (strong, nonatomic) NetworkService *networkService;
 
 @end
 
@@ -46,10 +46,10 @@
 
 - (void)fetchCakeImageForCake:(Cake *)cake {
     
-    self.networkService = [NetworkService sharedService];
+    self.networkService = [NetworkService shared];
     __weak typeof(self) weakSelf = self;
     
-    [self.networkService fetchImageForURLCake:cake completoin:^(UIImage *cakeImage, NSError *fetchError) {
+    [self.networkService fetchImageFor:cake completion:^(UIImage *cakeImage, NSError *error) {
     
         [weakSelf.cakeImageView setImage:cakeImage];
     }];

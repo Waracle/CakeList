@@ -9,7 +9,7 @@
 #import "MasterViewController.h"
 #import "CakeCell.h"
 #import "Cake.h"
-#import "NetworkService.h"
+#import "Cake_List-Swift.h"
 
 @interface MasterViewController ()
 
@@ -58,17 +58,17 @@
 
 - (void)getData{
     
-    self.networkService = [NetworkService sharedService];
+    self.networkService = [NetworkService shared];
     __weak typeof(self) weakSelf = self;
     
-    [self.networkService fetchAllCakesWithCompletion:^(NSArray<Cake *> *cakes, NSError *fetchError) {
-        
+    [self.networkService fetchAllCakesWith:^(NSArray<Cake *> *cakes, NSError *fetchError) {
+
         if (fetchError) {
-            
+
             [weakSelf presentAlertControllerWithError:fetchError];
-            
+
         } else {
-            
+
             weakSelf.objects = cakes;
             [weakSelf.tableView reloadData];
         }
@@ -93,7 +93,6 @@
     [alertController addAction:cancelAction];
     
     [self presentViewController:alertController animated:true completion:nil];
-    
 }
 
 @end
