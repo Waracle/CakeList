@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class Cake;
+
 @interface CakeCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *cakeImageView;
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
+
+- (void)configureWithCake:(Cake *)cake;
+
 @end

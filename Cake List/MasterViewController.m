@@ -8,19 +8,28 @@
 
 #import "MasterViewController.h"
 #import "CakeCell.h"
+#import "Cake.h"
+#import "Cake_List-Swift.h"
 
 @interface MasterViewController ()
-@property (strong, nonatomic) NSArray *objects;
+
+@property (strong, nonatomic) NSArray <Cake *>*objects;
+@property (strong, nonatomic) NetworkService *networkService;
+
 @end
 
 @implementation MasterViewController
 
+#pragma mark - Lifecycle
+
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     [self getData];
 }
 
-#pragma mark - Table View
+#pragma mark - UITableViewDataSource
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
@@ -30,42 +39,60 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    CakeCell *cell = (CakeCell*)[tableView dequeueReusableCellWithIdentifier:@"Cell"];
     
-    NSDictionary *object = self.objects[indexPath.row];
-    cell.titleLabel.text = object[@"title"];
-    cell.descriptionLabel.text = object[@"desc"];
- 
-    
-    NSURL *aURL = [NSURL URLWithString:object[@"image"]];
-    NSData *data = [NSData dataWithContentsOfURL:aURL];
-    UIImage *image = [UIImage imageWithData:data];
-    [cell.cakeImageView setImage:image];
+    CakeCell *cell = (CakeCell*)[tableView dequeueReusableCellWithIdentifier:@"CakeCell"];
+    Cake *cake = self.objects[indexPath.row];
+    [cell configureWithCake:cake];
     
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+#pragma mark - Fetch
+
 - (void)getData{
     
-    NSURL *url = [NSURL URLWithString:@"https://gist.githubusercontent.com/hart88/198f29ec5114a3ec3460/raw/8dd19a88f9b8d24c23d9960f3300d0c917a4f07c/cake.json"];
+    self.networkService = [NetworkService shared];
+    __weak typeof(self) weakSelf = self;
     
-    NSData *data = [NSData dataWithContentsOfURL:url];
+    [self.networkService fetchAllCakesWith:^(NSArray<Cake *> *cakes, NSError *fetchError) {
+
+        if (fetchError) {
+
+            [weakSelf presentAlertControllerWithError:fetchError];
+
+        } else {
+
+            weakSelf.objects = cakes;
+            [weakSelf.tableView reloadData];
+        }
+    }];
+}
+
+#pragma mark - Error handling
+
+- (void)presentAlertControllerWithError:(NSError *)error {
     
-    NSError *jsonError;
-    id responseData = [NSJSONSerialization
-                       JSONObjectWithData:data
-                       options:kNilOptions
-                       error:&jsonError];
-    if (!jsonError){
-        self.objects = responseData;
-        [self.tableView reloadData];
-    } else {
-    }
+    __weak typeof(self) weakSelf = self;
     
+    UIAlertAction *retryAction = [UIAlertAction actionWithTitle:@"Retry" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        [weakSelf getData];
+    }];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:retryAction];
+    [alertController addAction:cancelAction];
+    
+    [self presentViewController:alertController animated:true completion:nil];
 }
 
 @end
